@@ -1,0 +1,7 @@
+version: '2'
+services:
+  weather-flask-app:
+    build: .
+    image: weather-flask-app
+    ports:
+      - "8080:8080"k
