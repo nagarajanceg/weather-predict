@@ -1,0 +1,2 @@
+predict_addr: 'http://127.0.0.1:5000/GetModels'
+get_data_addr: 'http://127.0.0.1:5002/'
