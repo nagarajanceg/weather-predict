@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <!--- Basic Page Needs
+        ================================================== -->
+        <meta charset="utf-8">
+        <title>Cloud based weather data prediction</title>
+        <link rel="icon" href="">
+        <meta name="description" content="Educational Project">
+        <meta name="author" content="Aravind Venkit, Nagaraj Gopal, Satish Santhanagopalan.">
+
+        <!-- Mobile Specific Metas
+        ================================================== -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        <!-- CSS
+        ================================================== -->
+        <link rel="stylesheet" href="stylesheets/default.css">
+        <link rel="stylesheet" href="stylesheets/style.css">
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+
+    </head>
+    <body class="container-fluid">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col">
+          <img class="img-thumbnail img-weather" src="images/sun.png" alt="image-data"/>
+        </div>
+
+        <div class="col txt-degree"> 
+            <div class="txt-value">33&#8457</div>
+
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-primary radio-list active">
+                <input type="radio" name="options" id="option1" autocomplete="off" checked> &#8457ahrenheit
+              </label>
+              <label class="btn btn-primary radio-list">
+                <input type="radio" name="options" id="option2" autocomplete="off"> &#8451elsius
+              </label>
+            </div>
+
+        </div>
+        <div class="col">
+            <!-- Basic dropdown -->
+            <div class="btn-group dropdown-group">
+                <button class="btn btn-link dropdown-toggle dropdown-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Station</button>
+
+                <div class="dropdown-menu dropdown-list">
+                    <a class="dropdown-item" href="#">Binghamton</a>
+                    <a class="dropdown-item" href="#">New York</a>
+                    <a class="dropdown-item" href="#">Chicago</a>
+                    <a class="dropdown-item" href="#">Boston</a>
+                </div>
+            </div>
+
+            <!-- Basic dropdown -->
+            <div class="btn-group dropdown-group">
+                <button class="btn btn-link dropdown-toggle dropdown-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Temperature</button>
+
+                <div class="dropdown-menu dropdown-list">
+                    <a class="dropdown-item" href="#">TAVG</a>
+                    <a class="dropdown-item" href="#">TMAX</a>
+                    <a class="dropdown-item" href="#">TMIN</a>
+                </div>
+            </div>
+
+                        <!-- Basic dropdown -->
+            <div class="btn-group dropdown-group">
+                <button class="btn btn-link dropdown-toggle dropdown-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select Days</button>
+
+                <div class="dropdown-menu dropdown-list">
+                    <a class="dropdown-item" href="#">30</a>
+                    <a class="dropdown-item" href="#">10</a>
+                    <a class="dropdown-item" href="#">20</a>
+                </div>
+            </div>
+
+            <div class="btn-group dropdown-group">
+                <button class="btn btn-danger dropdown-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Predict</button>
+            </div>
+    
+
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div id="chartContainer" class="chart">
+        </div>
+      </div>
+
+    </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script  src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        <script type="text/javascript"  src="bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript"  src="bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript"  src="bootstrap/js/bootstrap-dropdown.js"></script>
+        <script src="javascripts/init.js"></script>
+        <script src="javascripts/chart.js"></script>
+    </body>
+</html>
