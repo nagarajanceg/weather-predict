@@ -4,6 +4,7 @@ import numpy
 import math
 import requests
 import pickle
+import yaml
 import matplotlib.pyplot as plt
 from keras.models import Sequential
 from keras.layers import Dense
@@ -64,7 +65,8 @@ def generateModel():
 	global scaler
 	global last_date
 
-	response = requests.get('http://127.0.0.1:5002/')
+	config = readYAML()
+	response = requests.get(config['get_data_addr'])
 	data_map = response.json()
 	tavg_list = []
 	tmax_list = []
@@ -133,6 +135,10 @@ def getModels():
 		pickle.dump(data_array,file)
 	file.close()
 	return send_file(filename, mimetype='application/octet-stream')
+
+def readYAML():
+	with open('config.yaml') as file:
+		return yaml.load(file)
 
 if __name__ == "__main__": 
 	app.run(debug=True, host = '0.0.0.0', port = 5000)	# start this program or web server

@@ -5,6 +5,7 @@ import requests
 import numpy
 import pickle
 import datetime
+import yaml
 
 app = Flask(__name__) #root path
 
@@ -28,16 +29,13 @@ def predictWeather(data, scaler, weights, model_json, last_date):
 		print data.shape
 
 	data = scaler.inverse_transform(data.reshape(1,-1))
-	print data
 	data = data.ravel().round().tolist()
 	future_data = data[-29:]
 
 	date = datetime.datetime.strptime(last_date, '%m/%d/%Y')
-	# count = 0
 	json_array = []
 	for val in future_data:
 		future_data_map = {}
-		# count += 1
 		date += datetime.timedelta(days=1) 
 		future_data_map['date'] = date
 		future_data_map['temp'] = int(val)
@@ -47,7 +45,8 @@ def predictWeather(data, scaler, weights, model_json, last_date):
 
 @app.route('/PredictWeather', methods=['GET','POST'])
 def doWeatherForecast():
-	response = requests.get('http://127.0.0.1:5000/GetModels')
+	config = readYAML()
+	response = requests.get(config['predict_addr'])
 	data_objects = []
 	filename = 'data.pickle'
 	with open(filename,'rb') as file:
@@ -56,7 +55,7 @@ def doWeatherForecast():
 				data_objects = pickle.load(file)	
 			except EOFError:
 				break
-	print "data_objects ----->", data_objects
+
 	last_date = str(data_objects[4])
 	tavg_json = predictWeather(data_objects[0][0], data_objects[1][0], data_objects[2][0], data_objects[3][0], last_date)
 	tmax_json = predictWeather(data_objects[0][1], data_objects[1][1], data_objects[2][1], data_objects[3][1], last_date)
@@ -71,6 +70,10 @@ def doWeatherForecast():
 
 	prediction_jsons_list.append(prediction_jsons_map)
 	return Response(json.dumps(prediction_jsons_list), mimetype='application/json') 	
+
+def readYAML():
+	with open('config.yaml') as file:
+		return yaml.load(file)
 
 if __name__ == "__main__": 
 	app.run(debug=True, host = '0.0.0.0', port = 5001)	# start this program or web server
