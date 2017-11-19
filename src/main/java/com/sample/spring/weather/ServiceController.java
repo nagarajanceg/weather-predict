@@ -40,4 +40,16 @@ public class ServiceController {
 //        result = new Consumer(4, 54);
         return null;
     }
+    @GetMapping(value = "/sayHello")
+    public Hello sayHello(){
+        return  new Hello("Hello from Spring Boot");
+    }
+
+    @GetMapping(value= "/consumeHello")
+    public Hello consumeHello(){
+//        HttpHeaders httpHeaders = new HttpHeaders();
+//        HttpEntity<Consumer> httpEntity = new HttpEntity<>(httpHeaders);
+        ResponseEntity<Hello> hello = restTemplate.getForEntity(getUrl+"/sayHello",Hello.class);
+        return hello.getBody();
+    }
 }
