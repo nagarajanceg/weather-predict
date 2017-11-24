@@ -5,12 +5,12 @@ target/
 .apt_generated
 .classpath
 .factorypath
-.project
+#.project
 .settings
 .springBeans
 
 ### IntelliJ IDEA ###
-.idea
+#.idea
 *.iws
 *.iml
 *.ipr
@@ -36,9 +36,9 @@ nbdist/
 .classpath
 .factorypath
 .gradle
-.idea
+#.idea
 .metadata
-.project
+#.project
 .recommenders
 .settings
 .springBeans
@@ -57,7 +57,7 @@ lib/
 manifest.yml
 overridedb.*
 settings.xml
-target
+#target
 transaction-logs
 .flattened-pom.xml
 secrets.yml
