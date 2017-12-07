@@ -1,17 +1,111 @@
-window.onload = function () {
+function load_chart(array, deg, tempType, dayCount, city) {
+	console.log("in chart");
+
+	console.log(array);
+
+	console.log("city",city);
+
+	ny_temp = [];
+	bin_temp = [];
+	sf_temp = [];
+
+	if(tempType == "TMIN"){
+		ny_temp = array[2].data[0].tmin;
+		bin_temp = array[1].data[0].tmin;
+		sf_temp = array[0].data[0].tmin;
+	}else if(tempType == "TMAX"){
+		ny_temp = array[2].data[0].tmax;
+		bin_temp = array[1].data[0].tmax;
+		sf_temp = array[0].data[0].tmax;
+	}else{
+		ny_temp = array[2].data[0].tavg;
+		bin_temp = array[1].data[0].tavg;
+		sf_temp = array[0].data[0].tavg;
+	}
+
+
+	ny_dataPts = [];
+	
+	var todaysDate = new Date();
+	for (i = 0; i < dayCount; i++) { 
+		ny_obj = {};
+    	ny_obj["x"] = new Date(ny_temp[i].date);
+
+    	if(deg == "C"){
+    		ny_obj["y"] = (ny_temp[i].temp - 32)*(5/9);
+    	}else{
+    		ny_obj["y"] = ny_temp[i].temp;
+    	}
+
+    	if(city == "New_York"){
+    		if(ny_obj["x"].setHours(0,0,0,0) == todaysDate.setHours(0,0,0,0)) {
+    			deg_txt =  Math.round( ny_obj["y"]);
+    			$('#t-dig').html(deg_txt);
+			}
+    	}
+    	
+    	ny_dataPts.push(ny_obj);
+	}
+
+	bin_dataPts = [];
+
+	for (i = 0; i < dayCount; i++) { 
+		bin_obj = {};
+    	bin_obj["x"] = new Date(bin_temp[i].date);
+
+    	if(deg == "C"){
+    		bin_obj["y"] = (bin_temp[i].temp - 32)*(5/9);
+    	}else{
+    		bin_obj["y"] = bin_temp[i].temp;
+    	}	
+
+    	if(city == "Binghamton"){
+    		if(bin_obj["x"].setHours(0,0,0,0) == todaysDate.setHours(0,0,0,0)) {
+    			deg_txt_bin =  Math.round( bin_obj["y"]);
+    			$('#t-dig').html(deg_txt_bin);
+			}
+    	}
+
+    	bin_dataPts.push(bin_obj);
+	}
+
+	sf_dataPts = [];
+
+	for (i = 0; i < dayCount; i++) { 
+		sf_obj = {};
+    	sf_obj["x"] = new Date(sf_temp[i].date);
+    	if(deg == "C"){
+    		sf_obj["y"] = (sf_temp[i].temp - 32)*(5/9);
+    	}else{
+    		sf_obj["y"] = sf_temp[i].temp;
+    	}
+
+    	if(city == "San_Francisco"){
+    		if(sf_obj["x"].setHours(0,0,0,0) == todaysDate.setHours(0,0,0,0)) {
+    			console.log("in sf");
+    			deg_txt_sf =  Math.round( sf_obj["y"]);
+    			$('#t-dig').html(deg_txt_sf);
+			}
+    	}
+
+    	sf_dataPts.push(sf_obj);
+	}
+
+	//console.log("ny-dp: ", ny_dataPts);
+
 
 var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	title:{
-		text: "Weather Prediction"
+		text: "Weather Predictor - "+tempType
 	},
 	axisX: {
 		valueFormatString: "DD MMM,YY"
 	},
 	axisY: {
-		title: "Temperature (in °F)",
+		title: "Temperature (in °"+deg+")",
 		includeZero: false,
-		suffix: " °F"
+		suffix: " °"+deg
 	},
 	legend:{
 		cursor: "pointer",
@@ -22,50 +116,28 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		shared: true
 	},
 	data: [{
-		name: "Binghamton",
-		type: "spline",
-		yValueFormatString: "#0.## °F",
-		showInLegend: true,
-		dataPoints: [
-			{ x: new Date(2017,6,24), y: 31 },
-			{ x: new Date(2017,6,25), y: 31 },
-			{ x: new Date(2017,6,26), y: 29 },
-			{ x: new Date(2017,6,27), y: 29 },
-			{ x: new Date(2017,6,28), y: 31 },
-			{ x: new Date(2017,6,29), y: 30 },
-			{ x: new Date(2017,6,30), y: 29 }
-		]
-	},
-	{
 		name: "New York",
 		type: "spline",
-		yValueFormatString: "#0.## °F",
+		yValueFormatString: "#0.## °"+deg,
 		showInLegend: true,
-		dataPoints: [
-			{ x: new Date(2017,6,24), y: 20 },
-			{ x: new Date(2017,6,25), y: 20 },
-			{ x: new Date(2017,6,26), y: 25 },
-			{ x: new Date(2017,6,27), y: 25 },
-			{ x: new Date(2017,6,28), y: 25 },
-			{ x: new Date(2017,6,29), y: 25 },
-			{ x: new Date(2017,6,30), y: 25 }
-		]
+		dataPoints: ny_dataPts
+	},
+	{
+		name: "Binghamton",
+		type: "spline",
+		yValueFormatString: "#0.## °"+deg,
+		showInLegend: true,
+		dataPoints: bin_dataPts
 	},
 	{
 		name: "San Francisco",
 		type: "spline",
-		yValueFormatString: "#0.## °F",
+		yValueFormatString: "#0.## °"+deg,
 		showInLegend: true,
-		dataPoints: [
-			{ x: new Date(2017,6,24), y: 22 },
-			{ x: new Date(2017,6,25), y: 19 },
-			{ x: new Date(2017,6,26), y: 23 },
-			{ x: new Date(2017,6,27), y: 24 },
-			{ x: new Date(2017,6,28), y: 24 },
-			{ x: new Date(2017,6,29), y: 23 },
-			{ x: new Date(2017,6,30), y: 23 }
-		]
-	}]
+		dataPoints: sf_dataPts
+	}
+
+	]
 });
 chart.render();
 

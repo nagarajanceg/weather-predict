@@ -19,10 +19,6 @@ body { background: white !important; }
   padding-bottom: :10px !important;
 }
 
-.dropdown-group{
-	padding-top: 16px !important;
-}
-
 .chart{
 	height: 300px; 
 	width: 100%;
@@ -36,18 +32,21 @@ body { background: white !important; }
 	border: none !important;
 }
 
-.dropdown-btn{
-	font-size: 2.5em !important;
-	height: 50px !important;
-	width: 300px !important;
+.dropdown-group{
+	padding-top: 16px !important;
 }
 
 .dropdown-list{
 	font-size: 2.5em !important;
+	height: 50px !important;
 	width: 300px !important;
 }
 
 .radio-list{
 	font-size: 2em !important;
 	width: 160px !important;
+}
+
+.t-text{
+	font-size: 0.5em !important;
 }
