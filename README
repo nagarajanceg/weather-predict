@@ -13,13 +13,13 @@ Software as a Service, Microservices, Containers and Kubernetes.
 Index Terms:
 System Design, application components, challenges, learnings
 
--------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
 
 System Design:
 
 https://goo.gl/NihstB
 
--------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
 
 Application Components:
 
@@ -31,7 +31,7 @@ Data Analysis Container - Flask Micro Service to do future predictions
 Database : Middleware stores and does analysis on data in Mongodb.
 Deployment Tool : Container orchestration done via Kubernetes in GCP(Google Cloud Platform) .
 
--------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
 
 Detailed report on components:
 
@@ -122,7 +122,7 @@ image: ngopal/weather-flask-app:1.0.4
 ports:
 - containerPort: 8051
 
--------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
 
 Learnings:
 Spring boot: To build a stand alone application using spring boot with REST API
@@ -136,7 +136,7 @@ Swager: Tool used for API listing.
 Dashboard: HTML, bootstrap and canvas.js for web UI construction.
 Google cloud: Cloud platform were the Kubernetes engine is used.
 
--------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
 
 Challenges:
 1. Most of the tech stack were new to us, so it really took a long time to learn
