@@ -1,5 +1,5 @@
 Advance Cloud Computing - Big Project.
-By Nagarajan, Sathish and Aravind Venkit.
+By Nagarajan, Sathish and Aravindhan Venkituswamy.
 
 Cloud Computing - IOT Simulation with SaaS, Microservices, Containers and Kubernetes
 
@@ -54,6 +54,7 @@ Used different data files to simulate data point collection from different IoT d
 Spring Boot Endpoints:
 Endpoints enable us to establish pipeline between different components of
 our application. Some of the spring boot endpoints are
+
 ● To fetch weather data from stub and send future predicted dataset for graph
 to dashboard.
 ● To access MongoDB to process use cases, update & provide data on
